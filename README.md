@@ -29,6 +29,14 @@ org.springframework.http.converter.HttpMessageNotReadableException: JSON parse e
 ```
 
 4. 找到关键类
-HandlerMethodArgumentResolverComposite
-ServletInvocableHandlerMethod
-将源码包导入到项目中，准备增加日志
+  HandlerMethodArgumentResolverComposite
+  ServletInvocableHandlerMethod
+
+  Ctrl+Shift+N查找文件名，可以看到这两个文件属于哪个包
+
+  
+
+  将对应源码包导入到项目中，准备增加日志
+
+# 参考链接
+
