@@ -29,5 +29,15 @@
    ```
 
 3. 在demo项目中的java新建package及controller，编写一个post API，代码见ApiController
+
 4. 项目增加tomcat，具体请见 https://github.com/bmuschko/gradle-tomcat-plugin
-5. 
+
+5. 参考[spring-5-embedded-tomcat-8-gradle-tutorial](https://auth0.com/blog/spring-5-embedded-tomcat-8-gradle-tutorial/) 增加spring web支持
+
+6. 已在master分支中调试出以下两个类
+
+   HandlerMethodArgumentResolverComposite
+
+   ServletInvocableHandlerMethod
+
+   准备增加日志输出
