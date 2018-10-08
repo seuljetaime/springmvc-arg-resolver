@@ -8,11 +8,19 @@ dependencyManagement {
 }
 
 dependencies {
-	compile(project(":spring-beans"))
-	compile(project(":spring-core"))
-	optional(project(":spring-aop"))
-	optional(project(":spring-context"))
-	optional(project(":spring-oxm"))
+//	compile(project(":spring-beans"))
+//	compile(project(":spring-core"))
+//	optional(project(":spring-aop"))
+//	optional(project(":spring-context"))
+//	optional(project(":spring-oxm"))
+
+	compile group: 'org.springframework', name: 'spring-beans', version: '5.0.9.RELEASE'
+	compile group: 'org.springframework', name: 'spring-core', version: '5.0.9.RELEASE'
+	optional group: 'org.springframework', name: 'spring-aop', version: '5.0.9.RELEASE'
+	optional group: 'org.springframework', name: 'spring-context', version: '5.0.9.RELEASE'
+	optional group: 'org.springframework', name: 'spring-oxm', version: '5.0.9.RELEASE'
+	
+	
 	optional("javax.servlet:javax.servlet-api:3.1.0")
 	optional("javax.servlet.jsp:javax.servlet.jsp-api:2.3.2-b02")
 	optional("javax.el:javax.el-api:3.0.1-b04")

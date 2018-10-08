@@ -40,4 +40,8 @@
 
    ServletInvocableHandlerMethod
 
-   准备增加日志输出
+   增加log4j2日志输出有warning日志
+
+   删除build.gradle中 compileJava.options 的-Werror设置
+
+   
