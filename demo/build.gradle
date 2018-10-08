@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+    }
+}
+
+//plugins {
+//    id 'java'
+//    id 'war'
+//    id 'idea'
+//}
+
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group 'com.example'
+version '5.0.9.RELEASE'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    compile(project(":spring-webmvc"))
+    provided('javax.servlet:javax.servlet-api:4.0.1')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.9.7')
+//    compile('org.apache.tomcat.embed:tomcat-embed-jasper:9.0.12')
+
+    def tomcatVersion = '8.5.16'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:8.5.2",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+tomcat {
+    httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
+    ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
+}
