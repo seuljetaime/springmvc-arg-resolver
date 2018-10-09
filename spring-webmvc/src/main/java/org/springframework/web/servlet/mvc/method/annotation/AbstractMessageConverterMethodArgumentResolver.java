@@ -76,6 +76,8 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
+	protected final Log log = LogFactory.getLog("demo");
+
 	protected final List<HttpMessageConverter<?>> messageConverters;
 
 	protected final List<MediaType> allSupportedMediaTypes;
@@ -176,7 +178,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 			noContentType = true;
 			contentType = MediaType.APPLICATION_OCTET_STREAM;
 		}
-
+		log.info("Content-Type：" + contentType.toString());
 		Class<?> contextClass = parameter.getContainingClass();
 		Class<T> targetClass = (targetType instanceof Class ? (Class<T>) targetType : null);
 		if (targetClass == null) {
@@ -200,6 +202,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 					if (logger.isDebugEnabled()) {
 						logger.debug("Read [" + targetType + "] as \"" + contentType + "\" with [" + converter + "]");
 					}
+					log.info("使用" + converter.getClass() + " Converter转换，hashcode为：" + converter.hashCode());
 					if (message.hasBody()) {
 						HttpInputMessage msgToUse =
 								getAdvice().beforeBodyRead(message, parameter, targetType, converterType);

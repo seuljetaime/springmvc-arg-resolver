@@ -21,6 +21,8 @@ import java.lang.reflect.Type;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.core.Conventions;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotatedElementUtils;
@@ -60,6 +62,8 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
  * @since 3.1
  */
 public class RequestResponseBodyMethodProcessor extends AbstractMessageConverterMethodProcessor {
+
+	private final Log log = LogFactory.getLog("demo");
 
 	/**
 	 * Basic constructor with converters only. Suitable for resolving
@@ -125,7 +129,6 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 	@Override
 	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
 			NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {
-
 		parameter = parameter.nestedIfOptional();
 		Object arg = readWithMessageConverters(webRequest, parameter, parameter.getNestedGenericParameterType());
 		String name = Conventions.getVariableNameForParameter(parameter);
@@ -150,10 +153,11 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 	protected <T> Object readWithMessageConverters(NativeWebRequest webRequest, MethodParameter parameter,
 			Type paramType) throws IOException, HttpMediaTypeNotSupportedException, HttpMessageNotReadableException {
 
+
 		HttpServletRequest servletRequest = webRequest.getNativeRequest(HttpServletRequest.class);
 		Assert.state(servletRequest != null, "No HttpServletRequest");
 		ServletServerHttpRequest inputMessage = new ServletServerHttpRequest(servletRequest);
-
+		log.info("准备转换参数");
 		Object arg = readWithMessageConverters(inputMessage, parameter, paramType);
 		if (arg == null && checkRequired(parameter)) {
 			throw new HttpMessageNotReadableException("Required request body is missing: " +

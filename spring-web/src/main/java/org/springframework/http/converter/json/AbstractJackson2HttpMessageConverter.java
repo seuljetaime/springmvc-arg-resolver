@@ -40,6 +40,8 @@ import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -70,6 +72,8 @@ import org.springframework.util.TypeUtils;
 public abstract class AbstractJackson2HttpMessageConverter extends AbstractGenericHttpMessageConverter<Object> {
 
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+
+	protected final Log log = LogFactory.getLog("demo");
 
 
 	protected ObjectMapper objectMapper;
@@ -234,6 +238,7 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 							readValue(inputMessage.getBody());
 				}
 			}
+			log.info("使用objectMapper读取转换json成" + javaType);
 			return this.objectMapper.readValue(inputMessage.getBody(), javaType);
 		}
 		catch (InvalidDefinitionException ex) {

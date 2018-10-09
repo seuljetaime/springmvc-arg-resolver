@@ -40,8 +40,18 @@
 
    ServletInvocableHandlerMethod
 
-   增加log4j2日志输出有warning日志
+   增加log4j2日志输出
 
-   删除build.gradle中 compileJava.options 的-Werror设置
+   有warning日志，删除build.gradle中 compileJava.options 的-Werror设
 
-   
+7. 使用demo gradle中的tomcatRun debug或者run
+
+8. 使用curl或者postman发起post user json请求
+
+
+
+# 遗留问题
+
+spring boot项目configureMessageConverters 新增convert后，debug发现其他默认converts还存在
+
+而此项目中的configureMessageConverters则只有一个convert
