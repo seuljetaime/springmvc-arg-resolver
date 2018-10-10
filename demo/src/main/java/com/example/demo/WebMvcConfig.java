@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -37,7 +38,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addConverter(new CustomDateConverter());
 	}
 
-	//	@Bean
+	@Bean
 	public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
 		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -56,9 +57,31 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //		super.addDefaultHttpMessageConverters(converters);
 //	}
 
+//	@Override
+//	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//		converters.add(customJackson2HttpMessageConverter());
+//	}
+
+
+	/**
+	 * A hook for extending or modifying the list of converters after it has been
+	 * configured. This may be useful for example to allow default converters to
+	 * be registered and then insert a custom converter through this method.
+	 *
+	 * @param converters the list of configured converters to extend.
+	 * @since 4.1.3
+	 */
 	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(customJackson2HttpMessageConverter());
+	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+		for (HttpMessageConverter converter : converters) {
+			if (converter instanceof MappingJackson2HttpMessageConverter) {
+				ObjectMapper objectMapper = new ObjectMapper();
+				SimpleModule simpleModule = new SimpleModule();
+				simpleModule.addDeserializer(Date.class, new CustomerDateDeserializer());
+				objectMapper.registerModule(simpleModule);
+				((MappingJackson2HttpMessageConverter) converter).setObjectMapper(objectMapper);
+			}
+		}
 	}
 
 	class CustomerDateDeserializer extends JsonDeserializer<Date> {
