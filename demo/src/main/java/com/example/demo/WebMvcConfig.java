@@ -51,19 +51,32 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		return jsonConverter;
 	}
 
-//	@Override
-//	protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-//		converters.add(customJackson2HttpMessageConverter());
-//		super.addDefaultHttpMessageConverters(converters);
-//	}
-
+	/**
+	 * 这个会覆盖掉默认的converts, mvc debug 到有8个converts
+	 *
+	 * Spring Boot如果启用了WebMvcAutoConfiguration，则这个方法是在那10个默认converts后之后添加，
+	 * 如果有多个MappingJackson2HttpMessageConverter，转换时ArrayList是用先找到的那个
+	 *
+	 * <p>
+	 * <p>
+	 * Configure the {@link HttpMessageConverter}s to use for reading or writing
+	 * to the body of the request or response. If no converters are added, a
+	 * default list of converters is registered.
+	 * <p><strong>Note</strong> that adding converters to the list, turns off
+	 * default converter registration. To simply add a converter without impacting
+	 * default registration, consider using the method
+	 * {@link #extendMessageConverters(List)} instead.
+	 *
+	 * @param converters initially an empty list of converters
+	 */
 //	@Override
 //	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 //		converters.add(customJackson2HttpMessageConverter());
 //	}
 
-
 	/**
+	 * 已经存在MappingJackson2HttpMessageConverter, 修改这个的convert
+	 * <p>
 	 * A hook for extending or modifying the list of converters after it has been
 	 * configured. This may be useful for example to allow default converters to
 	 * be registered and then insert a custom converter through this method.
@@ -73,7 +86,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	 */
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-		for (HttpMessageConverter converter : converters) {
+		for (HttpMessageConverter<?> converter : converters) {
 			if (converter instanceof MappingJackson2HttpMessageConverter) {
 				ObjectMapper objectMapper = new ObjectMapper();
 				SimpleModule simpleModule = new SimpleModule();

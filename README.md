@@ -42,14 +42,32 @@
 
    ServletInvocableHandlerMethod
 
-   增加log4j2日志输出
+7. 增加log4j2日志输出
 
-   有warning日志，删除build.gradle中 compileJava.options 的-Werror设
+   有warning日志，删除build.gradle中 compileJava.options 的-Werror设置，不然会启动不了
 
-7. 使用demo gradle中的tomcatRun debug或者run
+8. 使用demo gradle中的tomcatRun debug或者run运行项目
 
-8. 使用curl或者postman发起post user json请求
+9. 使用curl或者postman发起post user json请求
 
+   ```bash
+   curl -X POST http://localhost:8080/demo/user -d '{"username": "123", "birthday": "2018-10-10 11:12:11"}' -H "Content-Type: application/json"
+   ```
+
+   IDE控制台会打印出log4j2日志
+
+   ```
+   16:39:11.345 [http-nio2-8080-exec-2] INFO  org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - invokeAndHandle
+   16:39:11.346 [http-nio2-8080-exec-2] INFO  org.springframework.web.method.support.InvocableHandlerMethod - 判断是否支持解析参数
+   16:39:11.356 [http-nio2-8080-exec-2] INFO  org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - 使用class org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor解析参数
+   16:39:11.356 [http-nio2-8080-exec-2] INFO  org.springframework.web.method.support.InvocableHandlerMethod - 参数解析器准备解析参数
+   16:39:11.356 [http-nio2-8080-exec-2] INFO  org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - 使用class org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor解析参数
+   16:39:11.360 [http-nio2-8080-exec-2] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor - 准备转换参数
+   16:39:11.366 [http-nio2-8080-exec-2] INFO  org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver - Content-Type：application/json
+   16:39:16.007 [http-nio2-8080-exec-2] INFO  org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver - 使用class org.springframework.http.converter.json.MappingJackson2HttpMessageConverter Converter转换，hashcode为：233921890
+   16:39:16.017 [http-nio2-8080-exec-2] INFO  org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter - 使用objectMapper读取转换json成[simple type, class com.example.demo.UserBean]
+   
+   ```
 
 
 # Spring Boot
@@ -91,6 +109,8 @@ See the [`WebMvcAutoConfiguration`](https://github.com/spring-projects/spring-bo
 
 
 ### 76.3 Customize the Jackson ObjectMapper
+
+
 
 ## 自定义json转换
 
