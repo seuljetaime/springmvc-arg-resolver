@@ -18,6 +18,8 @@ package org.springframework.web.bind;
 
 import javax.servlet.ServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.lang.Nullable;
 import org.springframework.validation.BindException;
@@ -59,6 +61,8 @@ import org.springframework.web.util.WebUtils;
  */
 public class ServletRequestDataBinder extends WebDataBinder {
 
+	private final Log log = LogFactory.getLog("demo");
+
 	/**
 	 * Create a new ServletRequestDataBinder instance, with default object name.
 	 * @param target the target object to bind onto (or {@code null}
@@ -98,6 +102,7 @@ public class ServletRequestDataBinder extends WebDataBinder {
 	 * @see #bind(org.springframework.beans.PropertyValues)
 	 */
 	public void bind(ServletRequest request) {
+		log.info("获取bean的属性及传递过来的值，准备绑定");
 		MutablePropertyValues mpvs = new ServletRequestParameterPropertyValues(request);
 		MultipartRequest multipartRequest = WebUtils.getNativeRequest(request, MultipartRequest.class);
 		if (multipartRequest != null) {

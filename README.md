@@ -51,7 +51,7 @@
 9. 使用curl或者postman发起post user json请求
 
    ```bash
-   curl -X POST http://localhost:8080/demo/user -d '{"username": "123", "birthday": "2018-10-10 11:12:11"}' -H "Content-Type: application/json"
+   curl -X POST http://localhost:8080/demo/user_json -d '{"username": "123", "birthday": "2018-10-10 11:12:11"}' -H "Content-Type: application/json"
    ```
 
    IDE控制台会打印出log4j2日志
@@ -68,6 +68,14 @@
    16:39:16.017 [http-nio2-8080-exec-2] INFO  org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter - 使用objectMapper读取转换json成[simple type, class com.example.demo.UserBean]
    
    ```
+
+10. curl post form
+
+    ```
+    curl -X POST http://localhost:8080/demo/user_form -d "username=123&birthday=2018-01-01 12:21:11"
+    ```
+
+
 
 
 # Spring Boot

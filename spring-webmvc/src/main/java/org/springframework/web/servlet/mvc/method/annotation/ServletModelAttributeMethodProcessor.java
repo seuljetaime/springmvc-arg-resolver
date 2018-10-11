@@ -20,6 +20,8 @@ import java.util.Collections;
 import java.util.Map;
 import javax.servlet.ServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -49,6 +51,8 @@ import org.springframework.web.servlet.HandlerMapping;
  * @since 3.1
  */
 public class ServletModelAttributeMethodProcessor extends ModelAttributeMethodProcessor {
+
+	private final Log log = LogFactory.getLog("demo");
 
 	/**
 	 * Class constructor.
@@ -151,6 +155,7 @@ public class ServletModelAttributeMethodProcessor extends ModelAttributeMethodPr
 	 */
 	@Override
 	protected void bindRequestParameters(WebDataBinder binder, NativeWebRequest request) {
+		log.info("子类的bindRequestParameters");
 		ServletRequest servletRequest = request.getNativeRequest(ServletRequest.class);
 		Assert.state(servletRequest != null, "No ServletRequest");
 		ServletRequestDataBinder servletBinder = (ServletRequestDataBinder) binder;

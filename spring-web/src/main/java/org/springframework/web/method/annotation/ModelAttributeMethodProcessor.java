@@ -70,6 +70,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	private static final ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
 
 	protected final Log logger = LogFactory.getLog(getClass());
+	private final Log log = LogFactory.getLog("demo");
 
 	private final boolean annotationNotRequired;
 
@@ -110,6 +111,8 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	public final Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
 			NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {
 
+
+		log.info("ServletModelAttributeMethodProcessor 的父类解析参数");
 		Assert.state(mavContainer != null, "ModelAttributeMethodProcessor requires ModelAndViewContainer");
 		Assert.state(binderFactory != null, "ModelAttributeMethodProcessor requires WebDataBinderFactory");
 
@@ -149,6 +152,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 			WebDataBinder binder = binderFactory.createBinder(webRequest, attribute, name);
 			if (binder.getTarget() != null) {
 				if (!mavContainer.isBindingDisabled(name)) {
+					log.info("绑定适配参数成" + name);
 					bindRequestParameters(binder, webRequest);
 				}
 				validateIfApplicable(binder, parameter);

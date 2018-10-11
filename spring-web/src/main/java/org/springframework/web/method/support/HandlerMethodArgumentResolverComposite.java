@@ -143,7 +143,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 				}
 			}
 		}
-		log.info("使用" + result.getClass() + "解析参数");
+		log.info("使用" + result.getClass() + " 解析参数");
 		return result;
 	}
 
