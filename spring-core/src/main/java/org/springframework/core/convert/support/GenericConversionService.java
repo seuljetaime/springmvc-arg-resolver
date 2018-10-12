@@ -28,6 +28,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.core.DecoratingProxy;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.convert.ConversionException;
@@ -61,7 +63,7 @@ import org.springframework.util.StringUtils;
  * @since 3.0
  */
 public class GenericConversionService implements ConfigurableConversionService {
-
+	private final Log log = LogFactory.getLog("demo");
 	/**
 	 * General NO-OP converter used when conversion is not required.
 	 */
@@ -187,6 +189,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 					sourceType + "]; instead it was a [" + source.getClass().getName() + "]");
 		}
 		GenericConverter converter = getConverter(sourceType, targetType);
+		log.info("使用" + converter + "转换" + targetType);
 		if (converter != null) {
 			Object result = ConversionUtils.invokeConverter(converter, source, sourceType, targetType);
 			return handleResult(sourceType, targetType, result);

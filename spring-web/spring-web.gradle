@@ -8,14 +8,14 @@ dependencyManagement {
 }
 
 dependencies {
-//	compile(project(":spring-beans"))
-//	compile(project(":spring-core"))
+	compile(project(":spring-beans"))
+	compile(project(":spring-core"))
 //	optional(project(":spring-aop"))
 //	optional(project(":spring-context"))
 //	optional(project(":spring-oxm"))
 
-	compile group: 'org.springframework', name: 'spring-beans', version: '5.0.9.RELEASE'
-	compile group: 'org.springframework', name: 'spring-core', version: '5.0.9.RELEASE'
+//	compile group: 'org.springframework', name: 'spring-beans', version: '5.0.9.RELEASE'
+//	compile group: 'org.springframework', name: 'spring-core', version: '5.0.9.RELEASE'
 	optional group: 'org.springframework', name: 'spring-aop', version: '5.0.9.RELEASE'
 	optional group: 'org.springframework', name: 'spring-context', version: '5.0.9.RELEASE'
 	optional group: 'org.springframework', name: 'spring-oxm', version: '5.0.9.RELEASE'

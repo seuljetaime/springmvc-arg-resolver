@@ -56,6 +56,7 @@ import org.springframework.util.StringUtils;
 class TypeConverterDelegate {
 
 	private static final Log logger = LogFactory.getLog(TypeConverterDelegate.class);
+	private final Log log = LogFactory.getLog("demo");
 
 	private final PropertyEditorRegistrySupport propertyEditorRegistry;
 
@@ -167,6 +168,7 @@ class TypeConverterDelegate {
 				}
 				catch (ConversionFailedException ex) {
 					// fallback to default conversion logic below
+					log.info("使用ConversionService转换异常 " + ex.getMessage());
 					conversionAttemptEx = ex;
 				}
 			}

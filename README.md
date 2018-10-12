@@ -75,6 +75,21 @@
     curl -X POST http://localhost:8080/demo/user_form -d "username=123&birthday=2018-01-01 12:21:11"
     ```
 
+    ```
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - invokeAndHandle
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.method.support.InvocableHandlerMethod - 判断是否支持解析参数
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - 使用class org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor 解析参数
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.method.support.InvocableHandlerMethod - 参数解析器准备解析参数
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - 使用class org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor 解析参数
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.method.annotation.ModelAttributeMethodProcessor - ServletModelAttributeMethodProcessor 的父类解析参数
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.method.annotation.ModelAttributeMethodProcessor - 绑定适配参数成userBean
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor - 子类的bindRequestParameters
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.web.bind.ServletRequestDataBinder - 获取bean的属性及传递过来的值，准备绑定
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.beans.AbstractNestablePropertyAccessor - 转换属性birthday成java.util.Date 待转换的值为2018-01-01 12:21:11
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.core.convert.support.GenericConversionService - 使用java.lang.String -> java.util.Date : com.example.demo.CustomDateConverter@18e4118转换java.util.Date
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.beans.AbstractNestablePropertyAccessor - 转换属性username成java.lang.String 待转换的值为123
+    17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.core.convert.support.GenericConversionService - 使用NO_OP转换java.lang.String
+    ```
 
 
 

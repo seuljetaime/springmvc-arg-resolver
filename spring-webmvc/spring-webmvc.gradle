@@ -9,17 +9,17 @@ dependencyManagement {
 dependencies {
 	provided("javax.servlet:javax.servlet-api:4.0.1")
 //	compile(project(":spring-aop"))
-//	compile(project(":spring-beans"))
+	compile(project(":spring-beans"))
 //	compile(project(":spring-context"))
-//	compile(project(":spring-core"))
+	compile(project(":spring-core"))
 //	compile(project(":spring-expression"))
 //	compile(project(":spring-web"))
 //	optional(project(":spring-context-support"))  // for FreeMarker support
 //	optional(project(":spring-oxm"))
 	compile group: 'org.springframework', name: 'spring-aop', version: '5.0.9.RELEASE'
-	compile group: 'org.springframework', name: 'spring-beans', version: '5.0.9.RELEASE'
+//	compile group: 'org.springframework', name: 'spring-beans', version: '5.0.9.RELEASE'
 	compile group: 'org.springframework', name: 'spring-context', version: '5.0.9.RELEASE'
-	compile group: 'org.springframework', name: 'spring-core', version: '5.0.9.RELEASE'
+//	compile group: 'org.springframework', name: 'spring-core', version: '5.0.9.RELEASE'
 	compile group: 'org.springframework', name: 'spring-expression', version: '5.0.9.RELEASE'
 	compile(project(":spring-web"))
 	optional group: 'org.springframework', name: 'spring-context-support', version: '5.0.9.RELEASE'

@@ -35,7 +35,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-//		registry.addConverter(new CustomDateConverter());
+		registry.addConverter(new CustomDateConverter());
 	}
 
 	@Bean

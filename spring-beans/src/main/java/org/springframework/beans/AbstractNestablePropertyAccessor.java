@@ -75,6 +75,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	 * We'll create a lot of these objects, so we don't want a new logger every time.
 	 */
 	private static final Log logger = LogFactory.getLog(AbstractNestablePropertyAccessor.class);
+	private final Log log = LogFactory.getLog("demo");
 
 	private int autoGrowCollectionLimit = Integer.MAX_VALUE;
 
@@ -450,6 +451,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 							}
 						}
 					}
+					log.info("转换属性" + tokens.canonicalName + "成" + ph.toTypeDescriptor() + " 待转换的值为" + originalValue);
 					valueToApply = convertForProperty(
 							tokens.canonicalName, oldValue, originalValue, ph.toTypeDescriptor());
 				}
