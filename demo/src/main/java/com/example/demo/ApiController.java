@@ -1,8 +1,8 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController("/")
 public class ApiController {
@@ -14,6 +14,14 @@ public class ApiController {
 
 	@PostMapping("/user_form")
 	public UserBean postUserForm(UserBean user) {
+		return user;
+	}
+
+	@GetMapping("/user_query")
+	public UserBean getUser(@RequestParam String username, @RequestParam Date birthday) {
+		UserBean user = new UserBean();
+		user.setUsername(username);
+		user.setBirthday(birthday);
 		return user;
 	}
 }

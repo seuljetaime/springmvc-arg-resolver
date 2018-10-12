@@ -91,6 +91,26 @@
     17:21:03.207 [http-nio2-8080-exec-9] INFO  org.springframework.core.convert.support.GenericConversionService - 使用NO_OP转换java.lang.String
     ```
 
+11. query with date
+
+    ```
+    curl http://localhost:8080/demo/user_query --data-urlencode "username=123" --data-urlencode "birthday=2018-01-01 11:21:32" -G
+    ```
+
+    ```
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - invokeAndHandle
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.method.support.InvocableHandlerMethod - 判断是否支持解析参数
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - 使用class org.springframework.web.method.annotation.RequestParamMethodArgumentResolver 解析参数
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.method.support.InvocableHandlerMethod - 参数解析器准备解析参数
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - 使用class org.springframework.web.method.annotation.RequestParamMethodArgumentResolver 解析参数
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.core.convert.support.GenericConversionService - 使用NO_OP转换@org.springframework.web.bind.annotation.RequestParam java.lang.String
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.method.support.InvocableHandlerMethod - 判断是否支持解析参数
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - 使用class org.springframework.web.method.annotation.RequestParamMethodArgumentResolver 解析参数
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.method.support.InvocableHandlerMethod - 参数解析器准备解析参数
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - 使用class org.springframework.web.method.annotation.RequestParamMethodArgumentResolver 解析参数
+    17:35:19.609 [http-nio2-8080-exec-1] INFO  org.springframework.core.convert.support.GenericConversionService - 使用java.lang.String -> java.util.Date : com.example.demo.CustomDateConverter@48f5e98b转换@org.springframework.web.bind.annotation.RequestParam java.util.Date
+    ```
+
 
 
 # Spring Boot
